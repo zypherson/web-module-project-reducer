@@ -1,9 +1,9 @@
-import { ADD_ONE, APPLY_NUMBER, CHANGE_OPERATION } from './../actions';
+import { ADD_ONE, APPLY_NUMBER, CHANGE_OPERATION, ADD_TWO, CLEAR_DISPLAY} from './../actions';
 
 export const initialState = {
-    total: 100,
+    total: 0,
     operation: "*",
-    memory: 100
+    memory: 0
 }
 
 const calculateResult = (num1, num2, operation) => {
@@ -24,6 +24,11 @@ const reducer = (state, action) => {
                 ...state,
                 total: state.total + 1
             });
+        case(ADD_TWO):
+            return({
+                ...state,
+                total: state.total + 2
+            });
 
         case(APPLY_NUMBER):
             return ({ 
@@ -35,6 +40,12 @@ const reducer = (state, action) => {
             return ({
                 ...state,
                 operation: action.payload
+            });
+
+            case(CLEAR_DISPLAY):
+            return ({
+                ...state,
+                total: 0
             });
             
         default:
